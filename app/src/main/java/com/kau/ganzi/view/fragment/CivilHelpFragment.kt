@@ -6,40 +6,39 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kau.ganzi.databinding.FragmentSettingBinding
+import com.kau.ganzi.databinding.FragmentCivilhelpBinding
 import com.kau.ganzi.view.activity.MainActivity
 import com.kau.ganzi.view.adapter.ListAdapter
 
-class SettingFragment : Fragment() {
+class CivilHelpFragment : Fragment() {
 
-    private var _binding: FragmentSettingBinding? = null
+    private var _binding: FragmentCivilhelpBinding? = null
     private val binding get() = _binding!!
 
-    private val settingItems = listOf(
-        "개인정보 수정",
-        "알림 설정",
-        "목소리 설정",
-        "글씨 설정",
-        "크레딧"
+    private val civilHelpItems = listOf(
+        "비대면 민원 상담",
+        "원스톱 통합 서류 발급",
+        "복지 혜택 신청 및 상담",
+        "각종 세금 신고",
+        "복지 혜택 신청 및 상담"
     )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSettingBinding.inflate(inflater, container, false)
+        _binding = FragmentCivilhelpBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = ListAdapter(settingItems) { selectedItem ->
-            // 각 항목 클릭 시 로직
-            // 예: (requireActivity() as MainActivity).replaceFragment(OtherFragment())
+        val adapter = ListAdapter(civilHelpItems) { selectedItem ->
+            // 클릭 시 로직 (예: Toast, Fragment 전환)
         }
 
-        binding.buttonBack.setOnClickListener { (requireActivity() as MainActivity).replaceFragment(MainFragment())}
+        binding.buttonBack.setOnClickListener { (requireActivity() as MainActivity).replaceFragment(MainFragment()) }
 
-        binding.recyclerViewSetting.apply {
+        binding.recyclerViewCivilHelp.apply {
             layoutManager = LinearLayoutManager(requireContext())
             this.adapter = adapter
         }

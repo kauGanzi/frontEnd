@@ -1,4 +1,4 @@
-package com.example.checkid.viewmodel
+package com.kau.ganzi.viewmodel
 
 import android.content.Context
 import android.util.Log
@@ -13,21 +13,17 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
-class LoginViewModel(context: Context) : ViewModel() {
-    private val _loginResult = MutableLiveData<Boolean?>(null)
-    val loginResult: LiveData<Boolean?> get() = _loginResult
+class LoginViewModel : ViewModel() {
+    private val _loginResult = MutableLiveData<String?>(null)
+    val loginResult: LiveData<String?> get() = _loginResult
 
-    fun login(context: Context, id: String, password: String) {
-        UserRepository.login()
-    }
-}
+    fun login(id: String, pw: String) {
+        viewModelScope.launch {
+         val result = withContext(Dispatchers.IO) {
+             UserRepository.login(id, pw)
+            }
 
-class LoginViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
-    override fun <T: ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(context) as T
+            _loginResult.value = result
         }
-
-        throw IllegalArgumentException("Unknown ViewModel class : ${modelClass.name}")
     }
 }

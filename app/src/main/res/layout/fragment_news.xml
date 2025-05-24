@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="news"
+            type="com.kau.ganzi.model.News"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FAFAF5"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- 뉴스 이미지 -->
+            <ImageView
+                android:id="@+id/imageViewNews"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+
+            <!-- 뉴스 제목 -->
+            <TextView
+                android:id="@+id/textViewNewsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{news.title}"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp" />
+
+            <!-- 뉴스 설명 (길어질 수 있는 부분!) -->
+            <TextView
+                android:id="@+id/textViewNewsDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{news.description}"
+                android:textSize="16sp"
+                android:paddingTop="8dp" />
+
+            <!-- 이전 버튼 (위치 바꿔야 함) -->
+            <Button
+                android:id="@+id/buttonBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

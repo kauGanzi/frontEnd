@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.fragment.app.Fragment
-import com.example.checkid.viewmodel.LoginViewModel
-import com.example.checkid.viewmodel.LoginViewModelFactory
+import com.kau.ganzi.viewmodel.LoginViewModel
 import com.kau.ganzi.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -16,9 +15,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LoginViewModel by viewModels {
-        LoginViewModelFactory(requireContext())
-    }
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,9 +29,14 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.loginState.observe(viewLifecycleOwner) { isSuccess ->
+        viewModel.loginResult.observe(viewLifecycleOwner) { result ->
+            if (result == "성공") {
 
+            }
 
+            else {
+
+            }
         }
 
         binding.buttonLogin.setOnClickListener {

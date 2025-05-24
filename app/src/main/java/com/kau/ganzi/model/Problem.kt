@@ -14,4 +14,8 @@ class Problem {
         this.choices = choices
         this.correctAnswer = correctAnswer
     }
+
+    fun getCorrectAnswer(): Int {
+        return correctAnswer
+    }
 }
